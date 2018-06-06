@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 
+import static jdk.nashorn.internal.objects.NativeString.replace;
 import static jdk.nashorn.internal.objects.NativeString.toUpperCase;
 
 public class Main {
@@ -14,10 +15,10 @@ public class Main {
         // write your code here
         String question;
         int  count = 0;
-
+//welcome message
         System.out.println("Welcome to the Eliza Program \n::::::::::::::::::::::::::::::::::::::::");
         Scanner scan = new Scanner(System.in);
-
+//hashmap for answers and replacement strings
         HashMap<Integer, String> hedges = new HashMap<Integer, String>();
         hedges.put(1,"Please tell me more");
         hedges.put(2,"Many of my patients tell me the same thing");
@@ -33,34 +34,46 @@ public class Main {
         replacements.put( "my","your");
         replacements.put( "me","you");
         replacements.put( "am","are");
-
-        System.out.println("Good day. What is your problem? Enter your response here or Q to quit: my teacher hates me");
+//user input
+        System.out.println("Good day. What is your problem? Enter your response here or 'q' or  'quit' to exit the program: my teacher hates me");
         question = scan.nextLine();
+//loop to run the program
+       while(!question.equals("quit") && count <=10 && !question.equals("Q")){
 
-       while(!question.equals("q") && count <=10){
-
+           //method changesFromHashMap set to a string
            String changedQuestion =changesFromHashMap(question,replacements,hedges,qualify);
+           //method to change the result to upper letter
            String allCaps = allCaps(changedQuestion);
+
+           //method pigLatin to change the result to pig latin
            String pigLatin =pigLatin(changedQuestion);
+           //condition to print the result as per user input
+           //run all caps if user inputs caps
            if(question.equals("caps")) {
                System.out.println(allCaps);
            }
+           //run pigLatin if user inputs pig
            else if(question.equals("pig"))
            {
                System.out.println(pigLatin);
            }
+           //run the MITCHELL'S TINY ADVENTURE! game
            else if(question.equals("play game")){
                playGame();
            }
+           //print the result of the program
            else{
                System.out.println(changedQuestion);
            }
+           //if the user inputs more than 10 times the program will end
             count ++;
-           System.out.println("Good day. What is your problem? Enter your response here or Q to quit: my teacher hates me");
+           //user input required
+           System.out.println("Good day. What is your problem? Enter your response here or q or quit to exit the program: my teacher hates me");
            question = scan.nextLine();
 
        }
     }
+   //-------------------------------------------------------------------------------
     // String change from the user input and answers to it
 public static  String changesFromHashMap(String question, HashMap<String, String> replacement , HashMap<Integer, String> hedges,HashMap<Integer, String> qualify){
         // string variable to split the user input and put it into array
@@ -155,7 +168,7 @@ public static  String changesFromHashMap(String question, HashMap<String, String
 return singleString;
 
  }
-
+//adventure game -------------------------------------
     public static void playGame(){
         Scanner input = new Scanner(System.in);
         String firstLevel,secondLevel,thirdLevel,fourthLevel;
@@ -226,11 +239,7 @@ return singleString;
                     System.out.println("won the game hahahahahahahahahahahahah");
                 }
             }
-
         }
-
     }
-    public static void red(String response){}
-             JTextArea textbox = new JTextArea("hello world");
-            textbox.setForeground(Color.red)
 }
+//end of the program
