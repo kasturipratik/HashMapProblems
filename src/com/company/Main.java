@@ -61,6 +61,11 @@ public class Main {
            else if(question.equals("play game")){
                playGame();
            }
+           else if(question.equals("red")){
+                    //printing red
+                   System.out.println("\033[31;1m"+changedQuestion+"\033[0m");
+               }
+
            //print the result of the program
            else{
                System.out.println(changedQuestion);
